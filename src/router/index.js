@@ -12,7 +12,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "login" */ '../views/login/Login.vue'),
     beforeEnter(to,from,next){
       const isLogin=localStorage.isLogin;
-       //true的时候执行跳转的页面是Home,不能再跳转到login页面
       isLogin?next({name:'Home'}):next();
     }
   },
