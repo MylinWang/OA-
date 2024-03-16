@@ -11,10 +11,11 @@ const routes = [
     name: 'Login',
     component: () => import(/* webpackChunkName: "login" */ '../views/login/Login.vue'),
     beforeEnter(to,from,next){
-      const isLogin=localStorage.isLogin;
+      const isLogin=sessionStorage.isLogin;
+       //true的时候执行跳转的页面是Home,不能再跳转到login页面
       isLogin?next({name:'Home'}):next();
     }
-  },
+  }
 
   // {
   //   path: '/about',
@@ -36,7 +37,7 @@ const router = createRouter({
   routes
 })
 router.beforeEach((to,from,next)=>{
-  const isLogin=localStorage.isLogin;
+  const isLogin=sessionStorage.isLogin;
   
   //next()往下执行
   (isLogin || to.name==="Login")? next() : next({name:'Login'});

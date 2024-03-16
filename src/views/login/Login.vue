@@ -14,7 +14,7 @@
     <el-form-item>
       <el-button
         type="primary"
-        @click="LoginhandleClick('loginForm')"
+        @click="onSubmit('loginForm')"
         style="width: 200px"
         >登录</el-button
       >
@@ -45,7 +45,7 @@ export default {
     };
   },
   methods:{
-    LoginhandleClick(loginForm) {
+    onSubmit(loginForm) {
         const form=this.$refs[loginForm]
         form.validate((valid)=>{
             if(valid){
@@ -63,7 +63,7 @@ export default {
                       sessionStorage.uid=json.data.user.userId
                       sessionStorage.eid=json.data.user.employeeId
                       window.location.href="/"
-                      localStorage.isLogin=true;
+                      sessionStorage.isLogin=true;
                     }else{
                      $message.error({message:json.message,offset:100})
                     }
